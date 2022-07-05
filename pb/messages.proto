@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option go_package = "eci/aguzate_monitoring";
+
+message Location {
+    float latitude = 1;
+    float longitude = 2;
+}
+message BikeLocation {
+    string bikeId = 1;
+    Location location = 2;
+}
+message Bike {
+    string bikeId = 1;
+    string size = 2;
+    string color = 3;
+}
+
+message GetBikesByUserIdRequest {
+    string userId = 1;
+}
+message UpdateBikeRequest {
+    string userId = 1;
+    Bike bike = 2;
+}
+message GetBikeLocationRequest {
+    string userId = 1;
+    string bikeId = 2;
+}
+message BikeResponse {
+    Bike bike = 1;
+}
+message BikeLocationResponse {
+    BikeLocation location = 1;
+}
+
+service BikeService {
+    rpc GetBikesByUserId (GetBikesByUserIdRequest) returns (stream BikeResponse);
+    rpc UpdateBike (UpdateBikeRequest) returns (BikeResponse);
+    rpc GetBikeLocation (GetBikeLocationRequest) returns (stream BikeLocationResponse);
+}
