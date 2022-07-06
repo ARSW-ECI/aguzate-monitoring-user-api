@@ -15,6 +15,9 @@ message Bike {
     string size = 2;
     string color = 3;
 }
+message User {
+    repeated Bike bikes = 1;
+}
 
 message GetBikesByUserIdRequest {
     string userId = 1;

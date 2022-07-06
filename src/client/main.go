@@ -20,6 +20,7 @@ func main() {
 	fmt.Printf("Option is %v\n", *option)
 
 	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
+	//conn, err := grpc.Dial("localhost"+port, opts...)
 	conn, err := grpc.Dial("localhost"+port, opts...)
 
 	if err != nil {
@@ -40,7 +41,7 @@ func main() {
 }
 
 func GetBikesByUserId(client aguzate_monitoring.BikeServiceClient) {
-	stream, err := client.GetBikesByUserId(context.Background(), &aguzate_monitoring.GetBikesByUserIdRequest{UserId: "1"})
+	stream, err := client.GetBikesByUserId(context.Background(), &aguzate_monitoring.GetBikesByUserIdRequest{UserId: "62b1cb32d5d85b53a5783637"})
 
 	if err != nil {
 		log.Fatal(err)
